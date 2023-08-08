@@ -1,0 +1,32 @@
+server:
+  port: 4000
+spring:
+  application:
+    name: zzh-crowd-auth
+  redis:
+    host: 123.56.30.35
+    password: zzhJava2022925
+  session:
+    store-type: redis
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+eureka:
+  instance:
+    instance-id: 43.143.191.224:${spring.application.name}:${server.port}
+    hostname: 43.143.191.224
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1000/eureka
+
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+short:
+  message:
+    SignName: 阿里云短信测试
+    TemplateCode: SMS_154950909
+    phoneNum: 15505480391

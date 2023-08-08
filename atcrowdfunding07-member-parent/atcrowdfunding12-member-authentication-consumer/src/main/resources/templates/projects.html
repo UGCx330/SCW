@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base th:href="@{/}"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script language="JavaScript" src="script/projects.js"></script>
+    <style>
+        #footer {
+            padding: 15px 0;
+            background: #fff;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+         #topcontrol {
+            color: #fff;
+            z-index: 99;
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+            background: #eb9316;
+            position: relative;
+            right: 14px !important;
+            bottom: 11px !important;
+            border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+            /*top: -2px;*/
+            left: 8.5px;
+            content: "\f106";
+            position: absolute;
+            text-align: center;
+            font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .label-type, .label-status, .label-order {
+            background-color: #fff;
+            color: #f60;
+            padding: 5px;
+            border: 1px #f60 solid;
+        }
+
+        #typeList :not(:first-child) {
+            margin-top: 20px;
+        }
+
+        .label-text {
+            margin: 0 10px;
+        }
+
+        .panel {
+            border-radius: 0;
+        }
+
+        h3.break {
+            font-size: 16px;
+            display: block;
+            white-space: nowrap;
+            word-wrap: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        h3.break > a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a th:href="@{/}" class="navbar-brand" href="#" style="font-size:32px;">互联网众筹系统</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse" style="float:right;">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="glyphicon glyphicon-user"></i> 张三<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a th:href="@{/auth/member/to/center/page}" href="member.html"><i
+                                        class="glyphicon glyphicon-scale"></i> 个人中心</a></li>
+                                <li><a th:href="@{/}" href="member.html"><i class="glyphicon glyphicon-scale"></i> 去首页</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a th:href="@{/auth/member/logout}" href="index.html">
+                                    <i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="container theme-showcase" role="main">
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="http://123.56.30.35" rel="nofollow"><i
+                                        class="glyphicon glyphicon-home"></i>
+                                    众筹首页</a>
+                            </li>
+                            <li class="active">
+                                <a rel="nofollow" href="javascript:;"><i class="glyphicon glyphicon-th-large"></i> 项目总览</a>
+                            </li>
+                            <!--                            <li>-->
+                            <!--                                <a rel="nofollow" href="start.html"><i class="glyphicon glyphicon-edit"></i>-->
+                            <!--                                    发起众筹</a>-->
+                            <!--                            </li>-->
+                            <li>
+                                <a rel="nofollow" th:href="@{/member/my/crowd}" href="minecrowdfunding.html"><i
+                                        class="glyphicon glyphicon-user"></i>
+                                    我的众筹</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" th:each="projects_data:${pageInfo_projects_data.list}">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="panel panel-default">
+                    <div class="panel-footer" style="height:50px;padding:0;">
+                        <div style="float:left;padding:15px;">
+                        </div>
+                        <div style="float:right;">
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <input th:value="${projects_data.keyword}" id="keyword" type="text" name="keyword"
+                                           class="form-control"
+                                           placeholder="请输入项目名称">
+                                </div>
+                                <button type="button" class="btn btn-default"
+                                        th:onclick="|FenYe(1,${projects_data.id})|"><i
+                                        class="glyphicon glyphicon-search"></i>
+                                    搜索
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="row" th:each="projects_data:${pageInfo_projects_data.list}"><!--此处就是TypeVO-->
+                    <!--                    <div th:if="${#strings.isEmpty(projects_data.portalProjectVOList)}">该分类下还没有任何项目</div>-->
+                    <div th:if="${#strings.isEmpty(projects_data)}">该分类下还没有任何项目</div>
+                    <div th:if="${not #strings.isEmpty(projects_data)}"
+                         th:each="project:${projects_data.portalProjectVOList}" class="col-md-3">
+                        <div class="thumbnail">
+                            <a th:href="'http://123.56.30.35/project/get/project/detail/'+${project.projectId}">
+                                <img alt="300x200" th:src="${project.headerPicturePath}"
+                                     src="img/product-1.jpg"/></a>
+                            <div class="caption">
+                                <h3 class="break">
+                                    <a th:href="'http://123.56.30.35/project/get/project/detail/'+${project.projectId}"
+                                       href="project.html" th:text="${project.projectName}">活性富氢净水直饮机</a>
+                                </h3>
+                                <p>
+                                <div style="float:left;"><i class="glyphicon glyphicon-screenshot" title="目标金额"></i>
+                                    $<span th:text="${project.money}">20,000</span>
+                                </div>
+                                <div style="float:right;"><i title="截至日期" class="glyphicon glyphicon-calendar"></i>
+                                    <span th:text="${project.deployDate}">2017-20-20</span>
+                                </div>
+                                </p>
+                                <br>
+                                <div class="progress" style="margin-bottom: 4px;">
+                                    <div class="progress-bar progress-bar-success"
+                                         role="progressbar" th:aria-valuenow="${project.percentage}"
+                                         aria-valuenow="40" aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         th:style="'width: '+${project.percentage}+'%'"
+                                         style="width: 40%">
+                                        <span th:text="${project.percentage}+'% '">40% </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span style="float: right;">
+                                        <i class="glyphicon glyphicon-star-empty"></i></span>
+                                    <span><i class="glyphicon glyphicon-user" title="支持人数"></i>
+                                    <span th:text="${project.supporter}">12345</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column" style="text-align:center"
+                     th:each="projects_data:${pageInfo_projects_data.list}">
+                    <ul class="pagination">
+                        <span>第[[${pageInfo_projects_data.pageNum}]]页/共[[${pageInfo_projects_data.pages}]]页</span>
+                        <li>
+                            <button type="button" rel="nofollow" th:disabled="${pageInfo_projects_data.isFirstPage}"
+                                    th:onclick="|FenYe(1,${projects_data.id})|"
+                                    href="javascript:void(0);">首页
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" th:disabled="${pageInfo_projects_data.isFirstPage}"
+                                    th:onclick="|FenYe(${pageInfo_projects_data.nextPage},${projects_data.id})|"
+                                    rel="nofollow" href="javascript:void(0);">上一页
+                            </button>
+                        </li>
+                        <input id="goPageNum" type="text" size="2px">
+                        <li>
+                            <button type="button"
+                                    th:onclick="|TiaoZhuan(${projects_data.id})|"
+                                    rel="nofollow" href="javascript:void(0);">跳转
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" th:disabled="${pageInfo_projects_data.isLastPage}"
+                                    th:onclick="|FenYe(${pageInfo_projects_data.nextPage},${projects_data.id})|"
+                                    rel="nofollow" href="javascript:void(0);">下一页
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" rel="nofollow" th:disabled="${pageInfo_projects_data.isLastPage}"
+                                    th:onclick="|FenYe(${pageInfo_projects_data.pages},${projects_data.id})|"
+                                    href="javascript:void(0);">尾页
+                            </button>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top:20px;">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div id="footer">
+                        <div class="footerNav">
+                            <a rel="nofollow" href="http://www.sdau.edu.cn/">关于我们</a> | <a rel="nofollow"
+                                                                                               href="http://www.baidu.com">服务条款</a>
+                            | <a rel="nofollow" href="http://www.baidu.com">免责声明</a> | <a rel="nofollow"
+                                                                                              href="http://www.baidu.com">网站地图</a>
+                            | <a rel="nofollow" href="http://www.sdau.edu.cn">联系我们</a>
+                        </div>
+                        <div class="copyRight">
+                            尽管盗版
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="script/docs.min.js"></script>
+    <script src="script/back-to-top.js"></script>
+    <script>
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
+</div>
+</body>
+</html>

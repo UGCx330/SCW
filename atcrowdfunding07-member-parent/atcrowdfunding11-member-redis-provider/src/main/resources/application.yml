@@ -1,0 +1,16 @@
+server:
+  port: 3000
+spring:
+  application:
+    name: zzh-crowd-redis
+  redis:
+    host: 127.0.0.1
+    password: zzhJava2022925
+
+eureka:
+  instance:
+    instance-id: 123.56.30.35:${spring.application.name}:${server.port}
+    hostname: 123.56.30.35
+  client:
+    service-url:
+      defaultZone: http://43.143.191.224:1000/eureka

@@ -1,0 +1,41 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: zzh-crowd-zuul
+  redis:
+    host: 127.0.0.1
+    password: zzhJava2022925
+  session:
+    store-type: redis
+
+eureka:
+  instance:
+    instance-id: 123.56.30.35:${spring.application.name}:${server.port}
+    hostname: 123.56.30.35
+  client:
+    service-url:
+      defaultZone: http://43.143.191.224:1000/eureka
+
+
+zuul:
+  ignored-services: "*"
+  sensitive-headers: "*" # 在 Zuul 向其他微服务重定向时保持原本头信息（请求头、响应头）
+  routes:
+    crowd-portal:
+      service-id: zzh-crowd-auth  #只能直接从网关localhost:80+访问auth微服务的路径。不能访问其他微服务路径。除非直接访问其他微服务 地址+端口+路径。这也就是为何说明网关是唯一入口,并且所有重定向都自带localhost:80
+      path: /** # 这里一定要使用两个“*”号，不然“/”路径后面的多层路径将无法访问
+    crowd-project:
+      service-id: zzh-crowd-project  #在eureka上使用spring.application.name定位微服务，从微服务中匹配该url
+      path: /project/**
+    crowd-order:
+      service-id: zzh-crowd-order
+      path: /order/**
+    crowd-pay:
+      service-id: zzh-crowd-pay
+      path: /pay/**
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

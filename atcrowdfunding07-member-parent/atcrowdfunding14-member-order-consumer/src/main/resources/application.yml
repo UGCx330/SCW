@@ -1,0 +1,22 @@
+server:
+  port: 6000
+spring:
+  application:
+    name: zzh-crowd-order
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 123.56.30.35
+    password: zzhJava2022925
+  session:
+    store-type: redis
+
+eureka:
+  instance:
+    instance-id: 43.143.191.224:${spring.application.name}:${server.port}
+    hostname: 43.143.191.224
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1000/eureka
+

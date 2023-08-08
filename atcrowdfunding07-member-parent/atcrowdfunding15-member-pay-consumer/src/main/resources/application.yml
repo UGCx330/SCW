@@ -1,0 +1,32 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: zzh-crowd-pay
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 123.56.30.35
+    password: zzhJava2022925
+  session:
+    store-type: redis
+
+eureka:
+  instance:
+    instance-id: 43.143.191.224:${spring.application.name}:${server.port}
+    hostname: 43.143.191.224
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1000/eureka
+
+ali:
+  pay:
+    alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoKRvW2RVoLunmKEjU0OzedY8GWBPGxEcYsMfsd76ftsexyYiKSuFeC6CstsJ+yyvfutuXEvpFthypYX7+wU5ZN4gvr1jab9A6nUSPJZYYiGCxgfOGqytdoP6aTx97ITw+khNYlymUbb2gXaZEkYM7MJAConMwjAV2d8xeayX5XCA7ZY5YHSUh8WcMti9RK1XJMTjZrb/9WvPIUyzsNC3rpgiqbZmjk+mzRfcJlTsCDf1xLom4q+5kwlo4MKAhHiOmu/ow7falX0b5xt97XcAd/1IEOPAacjwBNlyRS7smbkORkPEB9ZcZ4ixsQSm86sZW1kC7EIeRBofMo8Vtjpz3wIDAQAB
+    app-id: 2021000121671738
+    charset: utf-8
+    gateway-url: https://openapi.alipaydev.com/gateway.do
+    merchant-private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDQWR2T64LPyZgm14VNliEBb347O3J9dsfCoaK/nOvnwNX29CClksAETtnXJ7OXlcqEyP3v1EQFuUZ20fxKuBOgT40RVaklHA7RtVNYeP9pa55s2Un/Y5kG/Qw3b/OnySMzO+aninaqct1hlF/ytskCSxY9nuDuBdMmSn1ZjADvwKfCZl8luBVjvoBYW6LrpRqSMbEBDrFFqdmqLL7JdGHq8k/TW+2RZJKoMhYPH6VePKOEXKgY7w8bynnhjepBDUIM4ieDlxcv2v2sCkR5mWcTaWF0Hy1Iu6V1iI4epL9PD/KII8cHqZeqW1dWWnbv2GKi9M+0CTNF5ZhQEFcVX1zZAgMBAAECggEBAKUb+jSfDqtcNxeQ9DLoJn/cu0x1b+W9m9DCBxeSY+DlEKsEDFsqUMEZO8klzUzzh+py3cqRjNZ8XTsMbcNI3UTNxh1WpRSjh5ro94PFX6NLheD80YdyhnLjVisYrR7qZtrTPZbIRAIPxSDvVJokAGew2Y87uUTnmM1ferbcHGHh/QQF+7g+AKD+Gyt4bj0wwDFU7konzh+x3WsJcFZfr8t5XO5s6LYxChEEvnHhmJRf25KijXyGelpb0kqQulS1oMN/mVwwJ/alRxkUcqBMuwZRJoxUIQd+jRqAAb0F9wnFgnvUoJQUkyeDHrENdXT68ZVvcwnYndNoGItTdnLDdYECgYEA5/Z7rz3oOkCLPVBzCZm5gpd/PtovFz0M6+MSoZN5B6hYtW9wkEt6QjeFpABQs4u4u9BkPysqf4G8rm5XriffCp4uT2wQDq+1OuONZ7KuNF0bHza5TYsfZIbQuu5ov3ujsXj2kQt9QHX9z9PpV4kSYa7D0Keo3N4aukr9iJWWJVcCgYEA5fAuMqyxcuGW977IIxJb6YRLIgc3z/D0Au3e1FbedQUKBmYUQsI9R8EztDGqxbTmGAknuqOI+6T8YbzbrA/Lr4A1hAqL5wcZ8Sola7z8GTkp6rXuj/MVcs9sIcD+sz98mRFFXJYsdnRz5ZOTKSs6OGUfcjnnUZ08D3O+GHHvgU8CgYBVQQNOcitjFYvXejT9p1FGTRYIbLp4CQkxvWCAoCoQhXAtJwsxDXyez7c/gpomk0jPRpVBnkTdXjqRxZ5WNPNF/MM6j5YLP8sVHMNBBKwANOQeAcfzVxmvodkfizZWgkO0m6fLwXREd9lURCdz874cxtXTX3uxybP7Gkq6o3fuuwKBgQCa5drpTkbYAjqGOOJwJez++Zz3lm81yLdIxd+nocGIiVWAjAG4G0vW68Md75uARmX+6SP3ajVceH+AhA5j8dwgJTln8wbeIn2KZf8BfjVB9K1VLSxBktrvFeZdMrsiG3GfV/Am+A+J2Nc+X9TyFenJle3CMFmxNEAClNEJfK+ApwKBgCJuhpshmO7rkT7vIhC3rvZzxeevnj2YVilbcKFnA5f9+Nh538uKx6azoVtEbrygEj1p8+j2p1zEZPQwD0s//i72RxLNaNeJf9DCW65unk7snlFNHLvqx2UMS+OPGCbukFdtPFZF+Zz8XGmFcEp4NzfIIJ1CN6SgQNSuOeEf08oJ
+    notify-url: http://123.56.30.35/pay/notify
+    return-url: http://123.56.30.35/pay/return
+    sign-type: RSA2

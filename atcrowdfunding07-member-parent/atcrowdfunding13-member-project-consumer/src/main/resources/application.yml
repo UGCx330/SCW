@@ -1,0 +1,29 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: zzh-crowd-project
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 123.56.30.35
+    password: zzhJava2022925
+  session:
+    store-type: redis
+
+eureka:
+  instance:
+    instance-id: 43.143.191.224:${spring.application.name}:${server.port}
+    hostname: 43.143.191.224
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1000/eureka
+
+aliyun:
+  oss:
+    access-key-id: LTAI5tJdzYRmZcQVPoJAwB5d
+    access-key-secret: 8gMgGvDjAXimVepotyWwrYQpjFKRKe
+    bucket-domain: http://zzh-001.oss-cn-qingdao.aliyuncs.com
+    bucket-name: zzh-001
+    end-point: http://oss-cn-qingdao.aliyuncs.com
